@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-
+require 'faker'
 
 
 # puts 'Cleaning database...'
@@ -26,11 +26,13 @@
 # Ingredient.create(name: "Amaretto")
 # puts 'Finished!'
 puts 'Cleaning database...'
+
+Cocktail.destroy_all
 Ingredient.destroy_all
-puts 'Creating ingredients...'
+Dose.destroy_all
+
 ingredients = [
-  {
-  name: "lemon"
+  {name: "lemon"
   },
   {
   name: "ice"
@@ -74,7 +76,73 @@ ingredients = [
   {
   name: "Campari"
   }
-
 ]
-Ingredient.create!(ingredients)
+
+puts 'Creating ingredients...'
+
+ingredients = ingredients.each do |hash|
+  a = Ingredient.create!(name: hash[:name])
+  puts a.id
+end
+puts Ingredient.count
+
+
+puts 'Creating coktails...'
+
+
+cocktails = 20.times do |cocktail|
+Cocktail.create(name: Faker::Beer.name)
+end
+
+puts Cocktail.count
+
+
+description = [
+  {
+  name: "2 doses"
+  },
+  {
+  name: "1 verre"
+  },
+  {
+  name: "1 cuillère"
+  },
+  {
+  name: "2 cuillère"
+  },
+  {
+  name: "3 cuillère"
+  },
+  {
+  name: "1 dose"
+  },
+  {
+  name: "2cl"
+  },
+  {
+  name: "1 cl"
+  },
+  {
+  name: "2ml"
+  },
+  {
+  name: "3ml"
+  },
+  {
+  name: "4ml"
+  },
+  {
+  name: "1 pincée"
+  }
+]
+
+20.times do |dose|
+Dose.create(description: description.sample[:name], cocktail_id: cocktails.sample, ingredient_id: ingredients.sample )
+end
+
+
+puts Dose.count
+
+
 puts 'Finished!'
+
