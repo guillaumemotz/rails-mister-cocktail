@@ -23,9 +23,13 @@
         <td>
           <%=dose.ingredient.name%>
         </td>
+        <td>
+          <%= link_to 'Delete', dose_path(dose) , method: 'delete' %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <%= link_to 'Back', cocktails_path %>
+<%= link_to 'Add a composition?', new_cocktail_dose_path(@cocktail.id) %>
