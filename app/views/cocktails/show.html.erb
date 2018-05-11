@@ -1,13 +1,6 @@
 <h1>Cocktail <%= @cocktail.name %></h1>
 
 
-<h2>Name</h2>
-<li class="list-unstyled">
-  <ol>
-    <%= @cocktail.name %>
-  </ol>
-</li>
-
 <table>
   <thead>
     <tr>
@@ -25,11 +18,13 @@
         </td>
         <td>
           <%= link_to 'Delete', dose_path(dose) , method: 'delete' %>
+
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<%= link_to 'Back', cocktails_path %>
-<%= link_to 'Add a composition?', new_cocktail_dose_path(@cocktail.id) %>
+<%= link_to("Back", cocktails_path, html_options = {class: "btn btn-info"}) %>
+<%= link_to("Add a composition", new_cocktail_dose_path(@cocktail.id), html_options = {class: "btn btn-primary"}) %>
+

@@ -1,15 +1,33 @@
-<h1>Cocktails</h1>
+<div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url(<%= image_path 'fritzouille.jpg'%>);">
+  <div class="banner-content">
+    <h1>Cocktails</h1>
+    <p>All our coktails!</p>
 
+   <%= link_to("Add a cocktail", new_cocktail_path, html_options = {class: "btn btn-warning"}) %>
+  </div>
+</div>
 
-<h2>Name</h2>
-<li class="list-unstyled">
+<div class="container">
+
   <% @cocktails.each do |cocktail| %>
-  <ol>
-    <%= link_to cocktail.name, cocktail_path(cocktail) %>
-  </ol>
+    <div class="col-xs-12 col-sm-4">
+      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= image_path 'cocktail.jpg'%>);">
+        <div class="card-category">Popular
+        </div>
+        <div class="card-description">
+          <h2><%= link_to cocktail.name, cocktail_path(cocktail) %></h2>
+          <p>Very cool city, the best</p>
+        </div>
+        <img class="card-user" src="https://kitt.lewagon.com/placeholder/users/tgenaitay">
+        <!-- <a class="card-link" href="" ></a> -->
+      </div>
+    </div>
   <% end %>
-</li>
+</div>
 
 <br>
 
-<%= link_to "New Cocktail", new_cocktail_path %>
+
+
+
+
